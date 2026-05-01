@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedScript Gujarati — AI/SLM Developer Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:    #1D9E75;
+    --teal-l:  #E1F5EE;
+    --teal-d:  #085041;
+    --blue:    #378ADD;
+    --blue-l:  #E6F1FB;
+    --blue-d:  #0C447C;
+    --purple:  #7F77DD;
+    --purple-l:#EEEDFE;
+    --purple-d:#3C3489;
+    --amber:   #BA7517;
+    --amber-l: #FAEEDA;
+    --amber-d: #633806;
+    --coral:   #D85A30;
+    --coral-l: #FAECE7;
+    --coral-d: #4A1B0C;
+    --pink:    #D4537E;
+    --pink-l:  #FBEAF0;
+    --pink-d:  #4B1528;
+    --gray:    #888780;
+    --gray-l:  #F4F3EF;
+    --gray-d:  #2C2C2A;
+    --text:    #1a1a18;
+    --text2:   #5a5955;
+    --text3:   #9a9890;
+    --border:  rgba(0,0,0,0.1);
+    --bg:      #ffffff;
+    --bg2:     #f8f7f3;
+    --bg3:     #f2f1ec;
+    --radius:  12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg2);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--gray-d);
+    color: #fff;
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.02) 40px,
+      rgba(255,255,255,0.02) 41px
+    );
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .hero h1 span {
+    color: #9FE1CB;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .hero-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  .hero-chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Timeline bar ── */
+  .timeline-wrap {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+  }
+
+  .timeline-label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .tl-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text2);
+    text-align: center;
+    flex: 1;
+  }
+
+  .timeline-bar {
+    display: flex;
+    height: 10px;
+    border-radius: 100px;
+    overflow: hidden;
+    gap: 3px;
+  }
+
+  .tbar-seg {
+    flex: 1;
+    border-radius: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .timeline-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── Main content ── */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* ── Phase header ── */
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 16px;
+  }
+
+  .phase-header:first-child { margin-top: 0; }
+
+  .phase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  .phase-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .phase-desc {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* ── Week card ── */
+  .week-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .week-card:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.18);
+  }
+
+  .week-card.open {
+    border-color: rgba(0,0,0,0.2);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+
+  .week-trigger {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+  }
+
+  .week-num-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--gray-l);
+    color: var(--text2);
+    padding: 4px 8px;
+    border-radius: 6px;
+    min-width: 46px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .week-info { flex: 1; min-width: 0; }
+
+  .week-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .week-sub {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+  }
+
+  .week-tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 100px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .tag-setup   { background: var(--gray-l);   color: #444;            border-color: rgba(0,0,0,0.12); }
+  .tag-audio   { background: var(--amber-l);  color: var(--amber-d);  border-color: #FAC775; }
+  .tag-slm     { background: var(--blue-l);   color: var(--blue-d);   border-color: #B5D4F4; }
+  .tag-rag     { background: var(--purple-l); color: var(--purple-d); border-color: #CECBF6; }
+  .tag-product { background: var(--coral-l);  color: var(--coral-d);  border-color: #F5C4B3; }
+  .tag-present { background: var(--pink-l);   color: var(--pink-d);   border-color: #F4C0D1; }
+
+  .chevron-icon {
+    font-size: 11px;
+    color: var(--text3);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .week-card.open .chevron-icon { transform: rotate(180deg); }
+
+  /* ── Card body ── */
+  .week-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .week-card.open .week-body { display: block; }
+
+  .dev-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    .dev-split { grid-template-columns: 1fr; }
+    .hero { padding: 32px 20px 28px; }
+    .hero h1 { font-size: 28px; }
+    .content { padding: 20px 14px 48px; }
+    .timeline-wrap { padding: 16px 20px; }
+    .week-tags { display: none; }
+  }
+
+  .dev-col {
+    padding: 16px 20px;
+  }
+
+  .dev-col:first-child {
+    border-right: 1px solid var(--border);
+  }
+
+  .dev-col-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .task-list li {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.45;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .task-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text3);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* ── Shared + Deliverable sections ── */
+  .shared-section {
+    padding: 12px 20px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .section-mini-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .shared-chip {
+    font-size: 12px;
+    padding: 4px 11px;
+    border-radius: 100px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+
+  .deliverable-section {
+    padding: 12px 20px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .deliverable-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--gray-l);
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .deliverable-row.highlight {
+    background: #FFF8EE;
+    border-color: #FAC775;
+  }
+
+  .deliverable-icon { font-size: 18px; flex-shrink: 0; }
+
+  .deliverable-text {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .deliverable-text strong {
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── Resources section ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 500px) {
+    .resources-grid { grid-template-columns: 1fr; }
+  }
+
+  .resource-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+  }
+
+  .resource-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 12px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .footer strong { color: var(--text2); }
+
+  /* ── Phase colors ── */
+  .phase-teal   { background: var(--teal-l);   color: var(--teal-d);   border: 1px solid #9FE1CB; }
+  .phase-blue   { background: var(--blue-l);   color: var(--blue-d);   border: 1px solid #B5D4F4; }
+  .phase-purple { background: var(--purple-l); color: var(--purple-d); border: 1px solid #CECBF6; }
+
+  /* Progress tracker */
+  .progress-section {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .progress-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+
+  .progress-weeks {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .pw-item {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .pw-bar-wrap {
+    height: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .pw-bar {
+    width: 32px;
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.2s;
+  }
+
+  .pw-bar:hover { opacity: 0.75; }
+
+  .pw-label {
+    font-size: 11px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+
+  .pw-week {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: 'DM Mono', monospace;
+    margin-top: 2px;
+  }
+
+  .expand-all-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text2);
+    cursor: pointer;
+    text-align: center;
+    margin-top: 16px;
+    transition: background 0.15s, border-color 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .expand-all-btn:hover {
+    background: var(--bg2);
+    border-color: rgba(0,0,0,0.2);
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🚀 AI / SLM Enablement Program · Rajkot, Gujarat</div>
+  <h1>MedScript <span>Gujarati</span><br>Developer Roadmap</h1>
+  <p>A 5-week structured learning & build program. Two developers working in parallel — learning AI, SLM, and RAG by building a real product that translates doctor–patient conversations into English SOAP notes.</p>
+  <div class="hero-chips">
+    <div class="hero-chip"><div class="dot" style="background:#9FE1CB"></div>5 Weeks</div>
+    <div class="hero-chip"><div class="dot" style="background:#B5D4F4"></div>2 Developers</div>
+    <div class="hero-chip"><div class="dot" style="background:#CECBF6"></div>SLM + RAG + Audio AI</div>
+    <div class="hero-chip"><div class="dot" style="background:#FAC775"></div>No Paid APIs — Build Your Own</div>
+    <div class="hero-chip"><div class="dot" style="background:#F4C0D1"></div>CEO Demo on Week 5</div>
+  </div>
+</div>
+
+<!-- TIMELINE BAR -->
+<div class="timeline-wrap">
+  <div class="timeline-label-row">
+    <div class="tl-label">Week 1</div>
+    <div class="tl-label">Week 2</div>
+    <div class="tl-label">Week 3</div>
+    <div class="tl-label">Week 4</div>
+    <div class="tl-label">Week 5</div>
+  </div>
+  <div class="timeline-bar">
+    <div class="tbar-seg" style="background:#9FE1CB"></div>
+    <div class="tbar-seg" style="background:#9FE1CB"></div>
+    <div class="tbar-seg" style="background:#B5D4F4"></div>
+    <div class="tbar-seg" style="background:#B5D4F4"></div>
+    <div class="tbar-seg" style="background:#CECBF6"></div>
+  </div>
+  <div class="timeline-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#9FE1CB"></div>Phase 1 — Foundations (Wk 1–2)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#B5D4F4"></div>Phase 2 — Build the Product (Wk 3–4)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#CECBF6"></div>Phase 3 — Polish & Present (Wk 5)</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- Quick overview bars -->
+  <div class="progress-section">
+    <div class="progress-title">Weekly Focus Areas</div>
+    <div class="progress-weeks">
+      <div class="pw-item" onclick="scrollToWeek(1)">
+        <div class="pw-bar-wrap"><div class="pw-bar" style="height:30px;background:#9FE1CB"></div></div>
+        <div class="pw-label">Fundamentals</div>
+        <div class="pw-week">WK 01</div>
+      </div>
+      <div class="pw-item" onclick="scrollToWeek(2)">
+        <div class="pw-bar-wrap"><div class="pw-bar" style="height:38px;background:#9FE1CB"></div></div>
+        <div class="pw-label">Gujarati ASR</div>
+        <div class="pw-week">WK 02</div>
+      </div>
+      <div class="pw-item" onclick="scrollToWeek(3)">
+        <div class="pw-bar-wrap"><div class="pw-bar" style="height:42px;background:#B5D4F4"></div></div>
+        <div class="pw-label">RAG + SOAP</div>
+        <div class="pw-week">WK 03</div>
+      </div>
+      <div class="pw-item" onclick="scrollToWeek(4)">
+        <div class="pw-bar-wrap"><div class="pw-bar" style="height:46px;background:#B5D4F4"></div></div>
+        <div class="pw-label">Full App</div>
+        <div class="pw-week">WK 04</div>
+      </div>
+      <div class="pw-item" onclick="scrollToWeek(5)">
+        <div class="pw-bar-wrap"><div class="pw-bar" style="height:48px;background:#CECBF6"></div></div>
+        <div class="pw-label">Demo Day</div>
+        <div class="pw-week">WK 05</div>
+      </div>
+    </div>
+    <button class="expand-all-btn" onclick="toggleAll()">▼ Expand All Weeks</button>
+  </div>
+
+  <!-- ═══════════ PHASE 1 ═══════════ -->
+  <div class="phase-header">
+    <div class="phase-pill phase-teal">Phase 1 — Foundations & Exploration</div>
+    <div class="phase-line"></div>
+    <div class="phase-desc">Week 1–2</div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-card" id="week-1">
+    <button class="week-trigger" onclick="toggleCard('week-1')">
+      <div class="week-num-badge">WK 01</div>
+      <div class="week-info">
+        <div class="week-title">AI / ML Fundamentals + Audio Pipeline Setup</div>
+        <div class="week-sub">Understand the AI landscape · Set up Python environment · Get audio recording working</div>
+      </div>
+      <div class="week-tags">
+        <span class="tag tag-setup">Setup</span>
+        <span class="tag tag-audio">Audio</span>
+      </div>
+      <div class="chevron-icon">▼</div>
+    </button>
+    <div class="week-body">
+      <div class="dev-split">
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev A — AI Concepts &amp; Theory</div>
+          <ul class="task-list">
+            <li>What is Machine Learning? Supervised vs unsupervised vs reinforcement learning</li>
+            <li>What is NLP (Natural Language Processing)? Use cases and examples</li>
+            <li>Difference: LLM vs SLM vs RAG — when to use which approach</li>
+            <li>Read: "The Illustrated Transformer" by Jay Alammar (free online)</li>
+            <li>Study: Tokenization, embeddings, and vector representations</li>
+            <li>Set up: Python 3.10, pip, venv, Jupyter Notebook on your laptop</li>
+            <li>Run: A basic text classification demo using HuggingFace Transformers</li>
+            <li>Explore: HuggingFace model hub — browse medical NLP models</li>
+          </ul>
+        </div>
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev B — Audio &amp; Speech Basics</div>
+          <ul class="task-list">
+            <li>Study: How does speech-to-text work? Acoustic model + language model explained</li>
+            <li>Learn: Whisper architecture by OpenAI — what makes it multilingual?</li>
+            <li>Set up: PyAudio / sounddevice library for microphone input on laptop</li>
+            <li>Test: noisereduce library — apply noise cancellation to a sample recording</li>
+            <li>Build: A simple Python script — press Enter to record, press Enter to stop, saves .wav file</li>
+            <li>Explore: Whisper for transcription of English audio (run locally)</li>
+            <li>Research: How Whisper handles multilingual and code-switched audio</li>
+            <li>Test: Record yourself speaking Gujarati and run through Whisper base model</li>
+          </ul>
+        </div>
+      </div>
+      <div class="shared-section">
+        <div class="section-mini-label">🤝 Joint Activities (Do Together)</div>
+        <div class="chip-row">
+          <span class="shared-chip">Daily 15-min standup call</span>
+          <span class="shared-chip">Watch: 3Blue1Brown Neural Networks series (YouTube)</span>
+          <span class="shared-chip">Set up shared GitHub repo for the project</span>
+          <span class="shared-chip">Read HuggingFace intro docs together</span>
+          <span class="shared-chip">Friday: Teach each other what you learned this week (30 min)</span>
+        </div>
+      </div>
+      <div class="deliverable-section">
+        <div class="section-mini-label">🎯 Week 1 Deliverable</div>
+        <div class="deliverable-row">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-text">
+            <strong>Demo to each other on Friday:</strong>
+            Dev B shows a working Python script that records audio from mic, saves as .wav file, and transcribes it with Whisper. Dev A runs a basic NLP text classification model and explains tokenization. Both explain 5 key AI terms to each other in their own words.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-card" id="week-2">
+    <button class="week-trigger" onclick="toggleCard('week-2')">
+      <div class="week-num-badge">WK 02</div>
+      <div class="week-info">
+        <div class="week-title">Gujarati Transcription + SLM Introduction</div>
+        <div class="week-sub">Fine-tune Whisper for Gujarati · Learn how to train/fine-tune a small language model</div>
+      </div>
+      <div class="week-tags">
+        <span class="tag tag-audio">Audio</span>
+        <span class="tag tag-slm">SLM</span>
+      </div>
+      <div class="chevron-icon">▼</div>
+    </button>
+    <div class="week-body">
+      <div class="dev-split">
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev A — SLM Study &amp; Setup</div>
+          <ul class="task-list">
+            <li>What is a Small Language Model (SLM)? How is it different from GPT-4?</li>
+            <li>Study: DistilBERT, TinyLlama, Phi-2 — architecture overview (read papers or blog summaries)</li>
+            <li>Understand: Training vs fine-tuning vs inference — what happens at each stage?</li>
+            <li>Learn: LoRA (Low-Rank Adaptation) — how to fine-tune a model without a massive GPU</li>
+            <li>Set up: HuggingFace Transformers + PEFT library (for LoRA) locally</li>
+            <li>Run: TinyLlama inference locally — generate text from a prompt</li>
+            <li>Study: What data format do you need to fine-tune a model? (instruction format, JSON)</li>
+            <li>Prepare: A small dataset of 50 doctor-patient dialogue examples (can be in English for now)</li>
+          </ul>
+        </div>
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev B — Gujarati Whisper Fine-tuning</div>
+          <ul class="task-list">
+            <li>Research: Mozilla Common Voice dataset — download the Gujarati audio samples</li>
+            <li>Prepare: Convert and clean dataset into the format Whisper expects</li>
+            <li>Fine-tune: Whisper-small on Gujarati using HuggingFace Trainer API</li>
+            <li>Evaluate: Calculate WER (Word Error Rate) on held-out test audio</li>
+            <li>Test: Record your own Gujarati speech and run through fine-tuned model</li>
+            <li>Handle: Mixed Gujarati + English (code-switching) — common in doctor conversations</li>
+            <li>Optimize: Reduce file size / speed up inference on CPU</li>
+            <li>Save: Fine-tuned model checkpoint and share on GitHub repo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="shared-section">
+        <div class="section-mini-label">🤝 Joint Activities</div>
+        <div class="chip-row">
+          <span class="shared-chip">Discuss: SLM vs RAG — which fits our use case better?</span>
+          <span class="shared-chip">Watch: Andrej Karpathy "Let's build GPT" (YouTube)</span>
+          <span class="shared-chip">Friday knowledge share: each explains the week's key concept in plain Gujarati/English</span>
+          <span class="shared-chip">Write a shared doc: "What we understand about AI so far"</span>
+        </div>
+      </div>
+      <div class="deliverable-section">
+        <div class="section-mini-label">🎯 Week 2 Deliverable</div>
+        <div class="deliverable-row">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-text">
+            <strong>Demo to each other on Friday:</strong>
+            Dev B shows a fine-tuned Whisper model that correctly transcribes Gujarati sentences into text. Dev A can run TinyLlama inference locally, explain what fine-tuning means, and show a sample training JSON dataset.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PHASE 2 ═══════════ -->
+  <div class="phase-header">
+    <div class="phase-pill phase-blue">Phase 2 — Build the Product</div>
+    <div class="phase-line"></div>
+    <div class="phase-desc">Week 3–4</div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-card" id="week-3">
+    <button class="week-trigger" onclick="toggleCard('week-3')">
+      <div class="week-num-badge">WK 03</div>
+      <div class="week-info">
+        <div class="week-title">RAG Setup + SOAP / Summary Model</div>
+        <div class="week-sub">Build the medical knowledge base · Generate summaries and SOAP notes from transcripts</div>
+      </div>
+      <div class="week-tags">
+        <span class="tag tag-rag">RAG</span>
+        <span class="tag tag-slm">SLM</span>
+      </div>
+      <div class="chevron-icon">▼</div>
+    </button>
+    <div class="week-body">
+      <div class="dev-split">
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev A — RAG Pipeline</div>
+          <ul class="task-list">
+            <li>Study: What is RAG (Retrieval-Augmented Generation)? Concept explained simply</li>
+            <li>Learn: Vector databases — set up ChromaDB or FAISS locally (both free, no cloud needed)</li>
+            <li>Understand: Sentence embeddings — use sentence-transformers library to convert text → vectors</li>
+            <li>Build: Ingest medical terminology PDFs / docs into ChromaDB as searchable knowledge base</li>
+            <li>Build: Query pipeline — input text → similarity search → retrieve top-3 relevant chunks</li>
+            <li>Combine: RAG + SLM — feed retrieved context into TinyLlama prompt to improve accuracy</li>
+            <li>Test: Ask medical questions ("What is hypertension?") and verify correct retrieval</li>
+            <li>Document: Draw a diagram of the full RAG pipeline for the presentation</li>
+          </ul>
+        </div>
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev B — SOAP Note Generator</div>
+          <ul class="task-list">
+            <li>Study deeply: What is a SOAP note? Subjective / Objective / Assessment / Plan — with examples</li>
+            <li>Collect: 20–30 sample doctor–patient conversation transcripts (English, from public datasets)</li>
+            <li>Fine-tune: TinyLlama or Phi-2 on transcript → SOAP pairs using LoRA</li>
+            <li>Build: Prompt engineering — design prompt template that reliably outputs structured SOAP</li>
+            <li>Build: Summary generator — extract key symptoms + diagnosis from transcript in 3–5 lines</li>
+            <li>Test: Input a mock Gujarati–English transcript (translated) → verify SOAP output in English</li>
+            <li>Evaluate: Check that all 4 SOAP sections are correctly and fully populated in every test</li>
+            <li>Refine: Improve fine-tuning dataset based on bad outputs you observe</li>
+          </ul>
+        </div>
+      </div>
+      <div class="shared-section">
+        <div class="section-mini-label">🤝 Joint Activities</div>
+        <div class="chip-row">
+          <span class="shared-chip">Integrate: Connect Whisper output → SOAP model input (first end-to-end test)</span>
+          <span class="shared-chip">Discuss: When to use RAG vs fine-tuning — write down your conclusions</span>
+          <span class="shared-chip">Write shared technical architecture document (for Week 5 presentation)</span>
+          <span class="shared-chip">Friday demo: Show full text pipeline — transcript in, SOAP out</span>
+        </div>
+      </div>
+      <div class="deliverable-section">
+        <div class="section-mini-label">🎯 Week 3 Deliverable</div>
+        <div class="deliverable-row">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-text">
+            <strong>End-to-end text pipeline working:</strong>
+            Input a text transcript → RAG retrieves relevant medical context → SLM generates a SOAP note + 5-line summary in English. Both developers can explain how each component works to each other clearly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-card" id="week-4">
+    <button class="week-trigger" onclick="toggleCard('week-4')">
+      <div class="week-num-badge">WK 04</div>
+      <div class="week-info">
+        <div class="week-title">Full Integration + Desktop Application</div>
+        <div class="week-sub">Connect all modules · Build the doctor-facing UI with Start / Stop buttons</div>
+      </div>
+      <div class="week-tags">
+        <span class="tag tag-product">Product</span>
+        <span class="tag tag-audio">Audio</span>
+        <span class="tag tag-slm">SLM</span>
+      </div>
+      <div class="chevron-icon">▼</div>
+    </button>
+    <div class="week-body">
+      <div class="dev-split">
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev A — Integration &amp; Pipeline</div>
+          <ul class="task-list">
+            <li>Build: End-to-end pipeline class — audio recording → Whisper → RAG → SLM → SOAP output</li>
+            <li>Handle: Long sessions (2 to 60 minutes) by chunking audio in 30-second segments</li>
+            <li>Add: Real-time transcription display — stream transcript chunks as doctor speaks</li>
+            <li>Handle: Speaker diarization — try to label "Doctor:" vs "Patient:" turns</li>
+            <li>Error handling: Silence detection, microphone failure, out-of-memory errors</li>
+            <li>Output: Save transcript + SOAP + summary to .txt and .pdf file automatically</li>
+            <li>Performance test: Full 10-minute recording → measure time to generate SOAP output</li>
+            <li>Optimize: Where are the bottlenecks? Can you speed up any step?</li>
+          </ul>
+        </div>
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev B — Desktop UI (Python)</div>
+          <ul class="task-list">
+            <li>Choose: Tkinter (simpler) or PyQt5 (nicer) for Python desktop application</li>
+            <li>Build: Main window with large, clear START (green) / STOP (red) buttons</li>
+            <li>Build: Live transcript viewer — scrollable text box that updates in real time</li>
+            <li>Build: Status bar — shows "Recording... 00:04:32 elapsed" while active</li>
+            <li>Build: Output panel with 3 tabs — Transcript | Summary | SOAP Note</li>
+            <li>Add: Doctor name + Patient name input fields at top of screen</li>
+            <li>Add: Export button — saves output as .txt file, with copy-to-clipboard option</li>
+            <li>Polish: Clean layout, readable fonts, works on 1080p laptop screen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="shared-section">
+        <div class="section-mini-label">🤝 Joint Activities</div>
+        <div class="chip-row">
+          <span class="shared-chip">User test with a real doctor or friend (if possible)</span>
+          <span class="shared-chip">Fix the top 5 bugs found in testing</span>
+          <span class="shared-chip">Measure accuracy: how correct are the SOAP notes?</span>
+          <span class="shared-chip">Write README + step-by-step setup guide for the app</span>
+          <span class="shared-chip">Record a 2-min screen recording of the app working as backup for demo day</span>
+        </div>
+      </div>
+      <div class="deliverable-section">
+        <div class="section-mini-label">🎯 Week 4 Deliverable</div>
+        <div class="deliverable-row">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-text">
+            <strong>Fully working desktop application:</strong>
+            Doctor opens the app on a laptop, types their name, presses START, speaks Gujarati for 5+ minutes, presses STOP — and sees a full English Transcript + 5-line Summary + SOAP Note on screen. Can export to a file.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PHASE 3 ═══════════ -->
+  <div class="phase-header">
+    <div class="phase-pill phase-purple">Phase 3 — Polish &amp; CEO Presentation</div>
+    <div class="phase-line"></div>
+    <div class="phase-desc">Week 5</div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-card" id="week-5">
+    <button class="week-trigger" onclick="toggleCard('week-5')">
+      <div class="week-num-badge">WK 05</div>
+      <div class="week-info">
+        <div class="week-title">Refinement + CEO Presentation Preparation</div>
+        <div class="week-sub">Polish the product · Prepare technical + business slides · Live demo rehearsal</div>
+      </div>
+      <div class="week-tags">
+        <span class="tag tag-present">Present</span>
+        <span class="tag tag-product">Product</span>
+      </div>
+      <div class="chevron-icon">▼</div>
+    </button>
+    <div class="week-body">
+      <div class="dev-split">
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev A — Technical Presentation</div>
+          <ul class="task-list">
+            <li>Create: Full system architecture diagram (draw.io or hand-drawn, clear and labeled)</li>
+            <li>Prepare: "How we built our SLM" — 5 slides explaining fine-tuning in plain language</li>
+            <li>Prepare: "What is RAG and why we used it" — simple analogy-based explanation for CEO</li>
+            <li>Benchmark: Record accuracy %, processing speed (seconds per minute of audio), model size (MB)</li>
+            <li>Prepare Q&A answers: "Can this run offline?", "How accurate is it?", "How to improve it?"</li>
+            <li>Record: A 2-min screen demo video as backup in case of technical issues on demo day</li>
+            <li>Prepare: "What would production look like?" — cloud vs on-prem, costs, scale</li>
+          </ul>
+        </div>
+        <div class="dev-col">
+          <div class="dev-col-label">👤 Dev B — Product &amp; Business Presentation</div>
+          <ul class="task-list">
+            <li>Polish UI: Clean up buttons, font sizes, tab labels — make it look professional</li>
+            <li>Prepare: "Business use case" slide — which other industries can benefit from this tech?</li>
+            <li>Prepare: "What we learned" — 5 key AI learnings written in plain, jargon-free English</li>
+            <li>Prepare: "Future roadmap" — what to build next (mobile app, cloud version, multi-language)</li>
+            <li>Script: Who speaks which part during the live demo — write it out clearly</li>
+            <li>Rehearse: Run the full demo 3 times before presentation day — fix anything that breaks</li>
+            <li>Prepare: Data privacy slide — how patient audio is handled, stored, and protected</li>
+          </ul>
+        </div>
+      </div>
+      <div class="shared-section">
+        <div class="section-mini-label">📋 Presentation Structure (30 Minutes)</div>
+        <div class="chip-row">
+          <span class="shared-chip">⏱ 5 min — What we set out to build &amp; why</span>
+          <span class="shared-chip">⏱ 5 min — How AI / SLM / RAG works (plain language)</span>
+          <span class="shared-chip">⏱ 10 min — Live product demo</span>
+          <span class="shared-chip">⏱ 5 min — What we learned &amp; challenges faced</span>
+          <span class="shared-chip">⏱ 5 min — Future possibilities &amp; next steps</span>
+        </div>
+      </div>
+      <div class="deliverable-section">
+        <div class="section-mini-label">🏆 Final Deliverable — CEO Demo Day</div>
+        <div class="deliverable-row highlight">
+          <div class="deliverable-icon">🏆</div>
+          <div class="deliverable-text">
+            <strong>Live working product demo + presentation to leadership.</strong>
+            Both developers present and explain — in plain business terms — what SLM, RAG, fine-tuning, and AI pipelines are. Leadership walks away confident that your team can take on real AI and SLM projects in future. You can say: "Yes, we built this ourselves. No paid APIs. We own the knowledge and the code."
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="phase-header" style="margin-top: 40px;">
+    <div class="phase-pill" style="background: var(--gray-l); color: var(--gray-d); border: 1px solid rgba(0,0,0,0.1);">📚 Key Learning Resources</div>
+    <div class="phase-line"></div>
+  </div>
+
+  <div class="resources-grid">
+    <div class="resource-card">
+      <div class="resource-card-title">Free Courses &amp; Videos</div>
+      <ul class="task-list">
+        <li>fast.ai — Practical Deep Learning for Coders (free)</li>
+        <li>HuggingFace NLP Course — huggingface.co/learn (free, hands-on)</li>
+        <li>Andrej Karpathy — "Let's build GPT" on YouTube</li>
+        <li>3Blue1Brown — Neural Networks series on YouTube</li>
+        <li>deeplearning.ai Short Courses — free to audit</li>
+        <li>LangChain RAG Tutorial — official docs + notebooks</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-title">Python Libraries to Install</div>
+      <ul class="task-list">
+        <li>transformers — HuggingFace (for SLM inference + fine-tuning)</li>
+        <li>peft — LoRA fine-tuning adapter (lightweight training)</li>
+        <li>openai-whisper — speech recognition (run locally)</li>
+        <li>chromadb — local vector database for RAG</li>
+        <li>sentence-transformers — generate text embeddings</li>
+        <li>sounddevice + noisereduce — audio recording &amp; cleanup</li>
+        <li>PyQt5 or Tkinter — desktop UI for the app</li>
+        <li>reportlab — generate PDF output files</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-title">Datasets to Use</div>
+      <ul class="task-list">
+        <li>Mozilla Common Voice — Gujarati audio dataset (free)</li>
+        <li>MTS-Dialog — medical dialogue + SOAP note pairs</li>
+        <li>ACI-Bench — clinical conversation benchmark dataset</li>
+        <li>WikiMed — medical Wikipedia articles for RAG knowledge base</li>
+        <li>Record your own Gujarati samples for testing</li>
+      </ul>
+    </div>
+    <div class="resource-card">
+      <div class="resource-card-title">Recommended Models (Free &amp; Local)</div>
+      <ul class="task-list">
+        <li>openai/whisper-small — Gujarati ASR base model</li>
+        <li>TinyLlama-1.1B-Chat — fast SLM for SOAP generation</li>
+        <li>microsoft/phi-2 — stronger SLM, slightly heavier</li>
+        <li>sentence-transformers/all-MiniLM-L6-v2 — embeddings for RAG</li>
+        <li>All models downloadable free from huggingface.co</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>MedScript Gujarati — AI / SLM Enablement Program</strong><br>
+  Built with: Python · HuggingFace Transformers · Whisper · ChromaDB · TinyLlama · PyQt5<br>
+  No paid APIs. No cloud dependency. Built by your team, owned by your team.
+</div>
+
+<script>
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  function scrollToWeek(n) {
+    const el = document.getElementById('week-' + n);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.classList.add('open');
+    }
+  }
+
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    ['week-1','week-2','week-3','week-4','week-5'].forEach(id => {
+      const el = document.getElementById(id);
+      if (allOpen) el.classList.add('open');
+      else el.classList.remove('open');
+    });
+    document.querySelector('.expand-all-btn').textContent = allOpen
+      ? '▲ Collapse All Weeks'
+      : '▼ Expand All Weeks';
+  }
+</script>
+
+</body>
+</html>
